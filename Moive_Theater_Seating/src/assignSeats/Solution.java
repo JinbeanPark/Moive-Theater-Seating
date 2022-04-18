@@ -61,7 +61,6 @@ class Solution {
 		
 		for (int i = 0; i < lenCol && numSeatReq != 0; i++) {
 			if (!availableSeats[row][i]) {
-//				String rowLetter = Character.toString(((char)'A' + row));
 				String rowLetter = Character.toString((char)('A' + row));
 				assignedSeats.add(rowLetter + String.valueOf(i));
 				availableSeats[row][i] = true;
@@ -135,7 +134,6 @@ class Solution {
 		// The reason why priority queue was used is because the program put the assignment by ascending order
 		// into the output file.
 		if (validAssignSeats) {
-//			String rowLetter = Character.toString(((char) 'A' + row));
 			String rowLetter = Character.toString((char)('A' + row));
 			PriorityQueue<String> assignedSeats = new PriorityQueue<>((a, b) -> a.charAt(0) == b.charAt(0)
 					? ((a.length() == b.length()) ? a.compareTo(b) : a.length() - b.length())
