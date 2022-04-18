@@ -6,7 +6,9 @@ import java.lang.*;
 
 class Solution {
 	
-	private int lenRow, lenCol;
+	private static final int lenRow = 10;
+	private static final int lenCol = 20;
+	
 	private boolean[][] availableSeats; // Assigned seat = true, Empty seat = false
 	private int totalAvailableSeats;
 	private int indxIdentifier;
@@ -18,8 +20,6 @@ class Solution {
 		availableSeats = new boolean[10][20];
 		totalAvailableSeats = 10 * 20;
 		indxIdentifier = 1;
-		lenRow = availableSeats.length;
-		lenCol = availableSeats[0].length;
 	}
 	
 	
@@ -204,6 +204,8 @@ class Solution {
 				int numSeatReq = Integer.parseInt(splitStrs[1]); //splitStrs indicates the number of seat request.
 				// Starting to find the seat from the middle of row and column 
 				// in order to provide customers the best angle of view.
+				
+				// 1. Scan odd rows from middle in order.
 				int oddRow = (lenRow / 2) - 1;
 				// The order of tracking oddRow: E(row=4) -> G(6) -> C(2) -> I(8) -> A(0)
 				// For the purpose of public safety, the program tracks the rows while jumping the adjacent rows.
@@ -225,6 +227,8 @@ class Solution {
 					numMovRow += 2;
 				}
 				
+				
+				// 2. Scan even rows from middle in order.
 				int evenRow = lenRow / 2;
 				numMovRow = 2;
 				// If the program couldn't find the available seats for group in odd rows,
@@ -244,6 +248,8 @@ class Solution {
 					numMovRow += 2;
 				}
 				
+				
+				// 3. Split group for assignment.
 				// For the case that there is no available consecutive seats for group,
 				// the program splits people in group and assigns them separately.
 				// The order of tracking rows for assigning the individual people is the following order: 
